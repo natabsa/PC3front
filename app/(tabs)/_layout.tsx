@@ -4,9 +4,11 @@ import { Platform } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import Octicons from '@expo/vector-icons/Octicons';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import Foundation from '@expo/vector-icons/Foundation';
 
 export default function TabLayout() {
   return (
@@ -35,7 +37,14 @@ export default function TabLayout() {
         name="activities"
         options={{
           title: 'Activities',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.bullet" color={color} />,
+          tabBarIcon: ({ color }) => <Octicons name="checklist" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="query"
+        options={{
+          title: 'query',
+          tabBarIcon: ({ color }) => <Foundation name="magnifying-glass" size={24} color={color} />,
         }}
       />
     </Tabs>
