@@ -21,11 +21,11 @@ export function Popup({ visible, onClose, title, children }: PopupProps) {
     >
       <View style={styles.overlay}>
         <ThemedView style={styles.container}>
+          <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
+            <ThemedText style={styles.closeIconText}>✕</ThemedText>
+          </TouchableOpacity>
           {title && <ThemedText style={styles.title}>{title}</ThemedText>}
           {children}
-          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <ThemedText style={styles.closeButtonText}>Close</ThemedText>
-          </TouchableOpacity>
         </ThemedView>
       </View>
     </Modal>
@@ -54,15 +54,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 15,
   },
-  closeButton: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#6750A4',
-    borderRadius: 5,
-    alignItems: 'center',
+  closeIcon: {
+    position: 'absolute',
+    top: 12,
+    left: 12,
+    padding: 8,
+    zIndex: 1,
   },
-  closeButtonText: {
-    color: 'white',
-    fontWeight: '500',
+  closeIconText: {
+    fontSize: 18,
+    color: '#666',
   },
 });
