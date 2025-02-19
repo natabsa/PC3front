@@ -1,5 +1,5 @@
 
-import { StyleSheet, TouchableOpacity, View, TextInput } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, TextInput, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -20,8 +20,22 @@ const historyEntries: HistoryEntry[] = [
   { id: '3', firstName: 'Beltrano', lastName: 'da Conceição'},
 ];
 
+export default function QueryScreen() {
+  const [selectedType, setSelectedType] = useState('patient');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+
+const handleQuery = () => {
+  if (selectedType === 'patient') {
+    router.push('../patient-info');
+  } else {
+    router.push('../employee-info');
+  }
+};
+
 const HistoryCard = ({ entry }: { entry: HistoryEntry }) => (
-  <TouchableOpacity style={styles.historyCard} onPress={() => router.push('../patient-info')}>
+  <TouchableOpacity style={styles.historyCard} onPress={handleQuery}>
     <View style={styles.avatarContainer}>
       <Ionicons name="person-circle-outline" size={48} color='#6750A4' />
     </View>
@@ -33,21 +47,9 @@ const HistoryCard = ({ entry }: { entry: HistoryEntry }) => (
   </TouchableOpacity>
 );
 
-export default function QueryScreen() {
-  const [selectedType, setSelectedType] = useState('patient');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-
-  const handleQuery = () => {
-    if (selectedType === 'patient') {
-      router.push('../patient-info');
-    } else {
-      router.push('../employee-info');
-    }
-  };
 
   return (
-    <ThemedView style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.form}>
         <View style={styles.pickerContainer}>
           <Picker selectedValue={selectedType} onValueChange={(value) => setSelectedType(value)} style={styles.picker}>
@@ -87,7 +89,7 @@ export default function QueryScreen() {
           <HistoryCard key={entry.id} entry={entry} />
         ))}
       </View>
-    </ThemedView>
+    </ScrollView>
   );
 }
 

@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Image , ScrollView} from 'react-native';
 import { Link, router } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -58,7 +58,7 @@ const FavoriteCard = ({ favorite }: { favorite: Favorite }) => (
 
 export default function HomeScreen() {
   return (
-    <ThemedView style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.section}>
         <ThemedText type="subtitle" style={styles.sectionTitle}>Next Activities</ThemedText>
         {activities.map(activity => (
@@ -72,7 +72,7 @@ export default function HomeScreen() {
           <FavoriteCard key={favorite.id} favorite={favorite} />
         ))}
       </View>
-    </ThemedView>
+    </ScrollView>
   );
 }
 

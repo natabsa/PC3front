@@ -16,7 +16,7 @@ export default function CreateScreen() {
   };
 
   return (
-    <ThemedView style={styles.container}>
+    <ScrollView style={styles.container}>
       <ThemedText style={styles.title}>Create New Record</ThemedText>
       
       <View style={styles.form}>
@@ -53,7 +53,7 @@ export default function CreateScreen() {
       <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
         <ThemedText style={styles.submitButtonText}>Submit</ThemedText>
       </TouchableOpacity>
-    </ThemedView>
+    </ScrollView>
   );
 }
 

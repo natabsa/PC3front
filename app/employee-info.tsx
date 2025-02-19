@@ -24,11 +24,11 @@ export default function EmployeeInfoScreen() {
       </View>
 
       <View style={styles.infoContainer}>
-        <ThemedText>• CPF: {employee.cpf}</ThemedText>
-        <ThemedText>• Phone: {employee.phone}</ThemedText>
-        <ThemedText>• Address: {employee.address}</ThemedText>
-        <ThemedText>• Admin: {employee.admin ? 'True' : 'False'}</ThemedText>
-        <ThemedText>• Birthday: {employee.birthday}</ThemedText>
+        <ThemedText>{'\u2022'} CPF: {employee.cpf}</ThemedText>
+        <ThemedText>{'\u2022'} Phone: {employee.phone}</ThemedText>
+        <ThemedText>{'\u2022'} Address: {employee.address}</ThemedText>
+        <ThemedText>{'\u2022'} Admin: {employee.admin ? 'True' : 'False'}</ThemedText>
+        <ThemedText>{'\u2022'} Birthday: {employee.birthday}</ThemedText>
       </View>
 
       <View style={styles.actions}>
