@@ -12,7 +12,7 @@ import Foundation from '@expo/vector-icons/Foundation';
 
 export default function TabLayout() {
   return (
-    <Tabs
+    <Tabs size={96} 
       screenOptions={{
         tabBarActiveTintColor: Colors.light.tint,
         headerShown: false,
@@ -30,7 +30,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => <IconSymbol size={24} name="house.fill" color={color} />,
         }}
       />
       <Tabs.Screen

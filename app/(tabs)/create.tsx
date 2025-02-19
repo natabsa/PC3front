@@ -1,5 +1,5 @@
 
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput,　TouchableOpacity　} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -53,10 +53,11 @@ export default function CreateScreen() {
           />
         </View>
 
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-          <ThemedText style={styles.submitButtonText}>Create Record</ThemedText>
-        </TouchableOpacity>
+        
       </View>
+      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+        <ThemedText style={styles.submitButtonText}>Submit</ThemedText>
+      </TouchableOpacity>
     </ThemedView>
   );
 }
@@ -96,14 +97,16 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     backgroundColor: '#6750A4',
-    padding: 16,
-    borderRadius: 8,
+    padding: 8,
+    borderRadius: 96,
     alignItems: 'center',
-    marginTop: 16,
+    width: 128,
+    position: 'absolute',
+    bottom: 16,
+    right: 12,
   },
   submitButtonText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: 'bold',
   },
 });
