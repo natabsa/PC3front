@@ -1,104 +1,81 @@
-
 import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import { Link } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+
+type Activity = {
+  id: string;
+  startTime: string;
+  endTime: string;
+  description: string;
+};
+
+type Favorite = {
+  id: string;
+  firstName: string;
+  lastName: string;
+};
+
+const activities: Activity[] = [
+  { id: '1', startTime: '09:30', endTime: '10:00', description: 'Alimentar Fulano' },
+  { id: '2', startTime: '10:30', endTime: '12:00', description: 'Banhar Ciclano' },
+  { id: '3', startTime: '12:00', endTime: '13:30', description: 'Outra atividade' },
+];
+
+const favorites: Favorite[] = [
+  { id: '1', firstName: 'Fulano', lastName: 'de Tal' },
+  { id: '2', firstName: 'Ciclano', lastName: 'Santos' },
+  { id: '3', firstName: 'Beltrano', lastName: 'da Conceição' },
+];
+
+const ActivityCard = ({ activity }: { activity: Activity }) => (
+  <TouchableOpacity style={styles.activityCard}>
+    <View style={styles.timeContainer}>
+      <ThemedText style={styles.timeLabel}>De</ThemedText>
+      <ThemedText style={styles.time}>{activity.startTime}</ThemedText>
+      <ThemedText style={styles.timeLabel}>Até</ThemedText>
+      <ThemedText style={styles.time}>{activity.endTime}</ThemedText>
+    </View>
+    <View style={styles.activityInfo}>
+      <ThemedText>{activity.description}</ThemedText>
+    </View>
+    <View style={styles.arrow}>
+      <ThemedText>→</ThemedText>
+    </View>
+  </TouchableOpacity>
+);
+
+const FavoriteCard = ({ favorite }: { favorite: Favorite }) => (
+  <TouchableOpacity style={styles.favoriteCard}>
+    <View style={styles.avatarContainer}>
+      <View style={styles.avatar} />
+    </View>
+    <View style={styles.favoriteInfo}>
+      <ThemedText>{favorite.firstName}</ThemedText>
+      <ThemedText style={styles.subtitle}>{favorite.lastName}</ThemedText>
+    </View>
+    <View style={styles.arrow}>
+      <ThemedText>→</ThemedText>
+    </View>
+  </TouchableOpacity>
+);
 
 export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <View style={styles.section}>
         <ThemedText type="subtitle" style={styles.sectionTitle}>Next Activities</ThemedText>
-        
-        <TouchableOpacity style={styles.activityCard}>
-          <View style={styles.timeContainer}>
-            <ThemedText style={styles.timeLabel}>De</ThemedText>
-            <ThemedText style={styles.time}>09:30</ThemedText>
-            <ThemedText style={styles.timeLabel}>Até</ThemedText>
-            <ThemedText style={styles.time}>10:00</ThemedText>
-          </View>
-          <View style={styles.activityInfo}>
-            <ThemedText>Alimentar Fulano</ThemedText>
-          </View>
-          <View style={styles.arrow}>
-            <ThemedText>→</ThemedText>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.activityCard}>
-          <View style={styles.timeContainer}>
-            <ThemedText style={styles.timeLabel}>De</ThemedText>
-            <ThemedText style={styles.time}>10:30</ThemedText>
-            <ThemedText style={styles.timeLabel}>Até</ThemedText>
-            <ThemedText style={styles.time}>12:00</ThemedText>
-          </View>
-          <View style={styles.activityInfo}>
-            <ThemedText>Banhar Ciclano</ThemedText>
-          </View>
-          <View style={styles.arrow}>
-            <ThemedText>→</ThemedText>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.activityCard}>
-          <View style={styles.timeContainer}>
-            <ThemedText style={styles.timeLabel}>De</ThemedText>
-            <ThemedText style={styles.time}>12:00</ThemedText>
-            <ThemedText style={styles.timeLabel}>Até</ThemedText>
-            <ThemedText style={styles.time}>13:30</ThemedText>
-          </View>
-          <View style={styles.activityInfo}>
-            <ThemedText>Outra atividade</ThemedText>
-          </View>
-          <View style={styles.arrow}>
-            <ThemedText>→</ThemedText>
-          </View>
-        </TouchableOpacity>
+        {activities.map(activity => (
+          <ActivityCard key={activity.id} activity={activity} />
+        ))}
       </View>
 
       <View style={styles.section}>
         <ThemedText type="subtitle" style={styles.sectionTitle}>Favorites</ThemedText>
-        
-        <TouchableOpacity style={styles.favoriteCard}>
-          <View style={styles.avatarContainer}>
-            <View style={styles.avatar} />
-          </View>
-          <View style={styles.favoriteInfo}>
-            <ThemedText>Fulano</ThemedText>
-            <ThemedText style={styles.subtitle}>de Tal</ThemedText>
-          </View>
-          <View style={styles.arrow}>
-            <ThemedText>→</ThemedText>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.favoriteCard}>
-          <View style={styles.avatarContainer}>
-            <View style={styles.avatar} />
-          </View>
-          <View style={styles.favoriteInfo}>
-            <ThemedText>Ciclano</ThemedText>
-            <ThemedText style={styles.subtitle}>Santos</ThemedText>
-          </View>
-          <View style={styles.arrow}>
-            <ThemedText>→</ThemedText>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.favoriteCard}>
-          <View style={styles.avatarContainer}>
-            <View style={styles.avatar} />
-          </View>
-          <View style={styles.favoriteInfo}>
-            <ThemedText>Beltrano</ThemedText>
-            <ThemedText style={styles.subtitle}>da Conceição</ThemedText>
-          </View>
-          <View style={styles.arrow}>
-            <ThemedText>→</ThemedText>
-          </View>
-        </TouchableOpacity>
+        {favorites.map(favorite => (
+          <FavoriteCard key={favorite.id} favorite={favorite} />
+        ))}
       </View>
-
     </ThemedView>
   );
 }
