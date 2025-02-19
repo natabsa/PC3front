@@ -39,10 +39,11 @@ export default function RootLayout() {
         card: '#ffffff',
       },
     }}>
-      <Stack initialRouteName="login">
-        <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+      <Stack screenOptions={{ headerShown: false }} initialRouteName="login">
+        <Stack.Screen name="login" />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="+not-found" options={{ headerShown: true }} />
+</old_str>
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
