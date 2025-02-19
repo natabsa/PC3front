@@ -54,7 +54,6 @@ const ActivityCard = ({ activity, onToggle, isChecked }: {
     </View>
   );
 };
-);
 
 export default function ActivitiesScreen() {
   const [checkedActivities, setCheckedActivities] = useState<Set<string>>(new Set());
