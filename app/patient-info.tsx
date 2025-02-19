@@ -1,18 +1,22 @@
 
-import { StyleSheet, TouchableOpacity, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, ScrollView } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import { router } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Popup } from '@/components/Popup';
+import { useState } from 'react';
 
 export default function PatientInfoScreen() {
+  const [showGeneralInfo, setShowGeneralInfo] = useState(false);
+  const [showAllergies, setShowAllergies] = useState(false);
+  const [showIllnesses, setShowIllnesses] = useState(false);
+  const [showActivities, setShowActivities] = useState(false);
 
-  const patient = {nome: "Jibs", cpf: "123.456.789-00",}
+  const patient = {nome: "Fulano de Tal", cpf: "123.456.789-00"}
+
   return (
     <ScrollView style={styles.container}>
-
       <View style={styles.header}>
         <View style={styles.avatar}>
           <Ionicons name="person" size={64} color="#fff" />
@@ -21,22 +25,22 @@ export default function PatientInfoScreen() {
       </View>
 
       <View style={styles.grid}>
-        <TouchableOpacity style={styles.gridItem}>
+        <TouchableOpacity style={styles.gridItem} onPress={() => setShowGeneralInfo(true)}>
           <Ionicons name="information-circle-outline" size={32} color="#6750A4" />
           <ThemedText style={styles.gridItemText}>General{'\n'}Info</ThemedText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.gridItem}>
+        <TouchableOpacity style={styles.gridItem} onPress={() => setShowAllergies(true)}>
           <MaterialCommunityIcons name="hand-heart" size={32} color="#6750A4" />
           <ThemedText style={styles.gridItemText}>Allergies</ThemedText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.gridItem}>
+        <TouchableOpacity style={styles.gridItem} onPress={() => setShowIllnesses(true)}>
           <MaterialCommunityIcons name="heart-pulse" size={32} color="#6750A4" />
           <ThemedText style={styles.gridItemText}>Illnesses</ThemedText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.gridItem}>
+        <TouchableOpacity style={styles.gridItem} onPress={() => setShowActivities(true)}>
           <MaterialCommunityIcons name="clipboard-list" size={32} color="#6750A4" />
           <ThemedText style={styles.gridItemText}>Activities</ThemedText>
         </TouchableOpacity>
@@ -51,6 +55,23 @@ export default function PatientInfoScreen() {
           <ThemedText style={styles.deleteButtonText}>Delete</ThemedText>
         </TouchableOpacity>
       </View>
+
+      <Popup visible={showGeneralInfo} onClose={() => setShowGeneralInfo(false)} title="General Information">
+        <ThemedText>Name: {patient.nome}</ThemedText>
+        <ThemedText>CPF: {patient.cpf}</ThemedText>
+      </Popup>
+
+      <Popup visible={showAllergies} onClose={() => setShowAllergies(false)} title="Allergies">
+        <ThemedText>No known allergies</ThemedText>
+      </Popup>
+
+      <Popup visible={showIllnesses} onClose={() => setShowIllnesses(false)} title="Illnesses">
+        <ThemedText>No registered illnesses</ThemedText>
+      </Popup>
+
+      <Popup visible={showActivities} onClose={() => setShowActivities(false)} title="Activities">
+        <ThemedText>No scheduled activities</ThemedText>
+      </Popup>
     </ScrollView>
   );
 }
@@ -59,9 +80,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-  },
-  backButton: {
-    marginBottom: 16,
   },
   header: {
     alignItems: 'center',
