@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 type PopupProps = {
   visible: boolean;
@@ -21,9 +22,9 @@ export function Popup({ visible, onClose, title, children }: PopupProps) {
       <View style={styles.overlay}>
         <ThemedView style={styles.container}>
           <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
-            <ThemedText style={styles.closeIconText}>✕</ThemedText>
+            <Ionicons name="close" size={24} color="black" />
           </TouchableOpacity>
-          {title && <ThemedText style={styles.title}>{title}</ThemedText>}
+          {title && <ThemedText style={styles.title}>{title}</ThemedText> }
           {children}
         </ThemedView>
       </View>
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 15,
+    alignSelf: 'center'
   },
   closeIcon: {
     position: 'absolute',

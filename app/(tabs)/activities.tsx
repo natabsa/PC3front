@@ -4,6 +4,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useState } from 'react';
 import { Popup } from '@/components/Popup';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 type Activity = {
   id: string;
@@ -34,22 +35,11 @@ const ActivityCard = ({ activity, onToggle, isChecked }: {
         <ThemedText style={styles.seeMore}>See more...</ThemedText>
       </TouchableOpacity>
       <TouchableOpacity style={styles.checkbox} onPress={onToggle}>
-        {isChecked && <ThemedText style={styles.checkmark}>✓</ThemedText>}
+        {isChecked && <FontAwesome6 name="check" size={16} color="black" />}
       </TouchableOpacity>
 
-      <Popup
-        visible={showPopup}
-        onClose={() => setShowPopup(false)}
-        title="Activity Details"
-      >
-        <View style={styles.popupContent}>
-          <ThemedText style={styles.popupTime}>
-            From: {activity.startTime} - To: {activity.endTime}
-          </ThemedText>
-          <ThemedText style={styles.popupDescription}>
-            {activity.description}
-          </ThemedText>
-        </View>
+      <Popup visible={showPopup} onClose={() => setShowPopup(false)} title="Activity Description">
+        ajudar o garotinha la na questao de la arrumacion del inventario e tambem no reestoque do inventario de mateirais de construcao e enfermaria tambien
       </Popup>
     </View>
   );
