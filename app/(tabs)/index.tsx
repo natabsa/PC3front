@@ -1,74 +1,193 @@
-import { Image, StyleSheet, Platform } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+import { Link } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome to Expo on Replit!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ThemedView style={styles.container}>
+      <View style={styles.section}>
+        <ThemedText type="subtitle" style={styles.sectionTitle}>Next Activities</ThemedText>
+        
+        <TouchableOpacity style={styles.activityCard}>
+          <View style={styles.timeContainer}>
+            <ThemedText style={styles.timeLabel}>De</ThemedText>
+            <ThemedText style={styles.time}>09:30</ThemedText>
+            <ThemedText style={styles.timeLabel}>Até</ThemedText>
+            <ThemedText style={styles.time}>10:00</ThemedText>
+          </View>
+          <View style={styles.activityInfo}>
+            <ThemedText>Alimentar Fulano</ThemedText>
+          </View>
+          <View style={styles.arrow}>
+            <ThemedText>→</ThemedText>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.activityCard}>
+          <View style={styles.timeContainer}>
+            <ThemedText style={styles.timeLabel}>De</ThemedText>
+            <ThemedText style={styles.time}>10:30</ThemedText>
+            <ThemedText style={styles.timeLabel}>Até</ThemedText>
+            <ThemedText style={styles.time}>12:00</ThemedText>
+          </View>
+          <View style={styles.activityInfo}>
+            <ThemedText>Banhar Ciclano</ThemedText>
+          </View>
+          <View style={styles.arrow}>
+            <ThemedText>→</ThemedText>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.activityCard}>
+          <View style={styles.timeContainer}>
+            <ThemedText style={styles.timeLabel}>De</ThemedText>
+            <ThemedText style={styles.time}>12:00</ThemedText>
+            <ThemedText style={styles.timeLabel}>Até</ThemedText>
+            <ThemedText style={styles.time}>13:30</ThemedText>
+          </View>
+          <View style={styles.activityInfo}>
+            <ThemedText>Outra atividade</ThemedText>
+          </View>
+          <View style={styles.arrow}>
+            <ThemedText>→</ThemedText>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.section}>
+        <ThemedText type="subtitle" style={styles.sectionTitle}>Favorites</ThemedText>
+        
+        <TouchableOpacity style={styles.favoriteCard}>
+          <View style={styles.avatarContainer}>
+            <View style={styles.avatar} />
+          </View>
+          <View style={styles.favoriteInfo}>
+            <ThemedText>Fulano</ThemedText>
+            <ThemedText style={styles.subtitle}>de Tal</ThemedText>
+          </View>
+          <View style={styles.arrow}>
+            <ThemedText>→</ThemedText>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.favoriteCard}>
+          <View style={styles.avatarContainer}>
+            <View style={styles.avatar} />
+          </View>
+          <View style={styles.favoriteInfo}>
+            <ThemedText>Ciclano</ThemedText>
+            <ThemedText style={styles.subtitle}>Santos</ThemedText>
+          </View>
+          <View style={styles.arrow}>
+            <ThemedText>→</ThemedText>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.favoriteCard}>
+          <View style={styles.avatarContainer}>
+            <View style={styles.avatar} />
+          </View>
+          <View style={styles.favoriteInfo}>
+            <ThemedText>Beltrano</ThemedText>
+            <ThemedText style={styles.subtitle}>da Conceição</ThemedText>
+          </View>
+          <View style={styles.arrow}>
+            <ThemedText>→</ThemedText>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.bottomNav}>
+        <TouchableOpacity style={styles.navItem}>
+          <ThemedText>Home</ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem}>
+          <ThemedText>Query</ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem}>
+          <ThemedText>Activities</ThemedText>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem}>
+          <ThemedText>New</ThemedText>
+        </TouchableOpacity>
+      </View>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    padding: 16,
   },
-  stepContainer: {
-    gap: 8,
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    marginBottom: 12,
+  },
+  activityCard: {
+    flexDirection: 'row',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    padding: 12,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
+  timeContainer: {
+    marginRight: 12,
+  },
+  timeLabel: {
+    fontSize: 12,
+    color: '#666',
+  },
+  time: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  activityInfo: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  favoriteCard: {
+    flexDirection: 'row',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 8,
+    alignItems: 'center',
+  },
+  avatarContainer: {
+    marginRight: 12,
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#6750A4',
+    borderRadius: 20,
+  },
+  favoriteInfo: {
+    flex: 1,
+  },
+  subtitle: {
+    fontSize: 12,
+    color: '#666',
+  },
+  arrow: {
+    justifyContent: 'center',
+  },
+  bottomNav: {
+    flexDirection: 'row',
+    position: 'absolute',
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    right: 0,
+    backgroundColor: '#6750A4',
+    padding: 16,
+  },
+  navItem: {
+    flex: 1,
+    alignItems: 'center',
   },
 });
