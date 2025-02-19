@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -30,8 +30,8 @@ const favorites: Favorite[] = [
   { id: '3', firstName: 'Beltrano', lastName: 'da Conceição' },
 ];
 
-const ActivityCard = ({ activity }: { activity: Activity }) => (
-  <TouchableOpacity style={styles.activityCard}>
+const ActivityCard = ({ activity }) => (
+  <View style={styles.activityCard}>
     <View style={styles.timeContainer}>
       <ThemedText style={styles.timeLabel}>From {activity.startTime}</ThemedText>
       <ThemedText style={styles.timeLabel}>To {activity.endTime}</ThemedText>
@@ -39,12 +39,12 @@ const ActivityCard = ({ activity }: { activity: Activity }) => (
     <View style={styles.activityInfo}>
       <ThemedText>{activity.description}</ThemedText>
     </View>
-    <MaterialCommunityIcons name="arrow-right-top-bold" size={24} color="#6750A4" />
-  </TouchableOpacity>
+    <Link href="/activities" style={{marginTop:12}} ><MaterialCommunityIcons name="arrow-right-top-bold" size={24} color="#6750A4" /></Link>
+  </View>
 );
 
 const FavoriteCard = ({ favorite }: { favorite: Favorite }) => (
-  <TouchableOpacity style={styles.favoriteCard}>
+  <View style={styles.favoriteCard}>
     <View style={styles.avatarContainer}>
       <Ionicons name="person-circle-outline" size={48} color='#6750A4' />
     </View>
@@ -52,8 +52,8 @@ const FavoriteCard = ({ favorite }: { favorite: Favorite }) => (
       <ThemedText>{favorite.firstName}</ThemedText>
       <ThemedText style={styles.subtitle}>{favorite.lastName}</ThemedText>
     </View>
-    <MaterialCommunityIcons name="arrow-right-top-bold" size={24} color="#6750A4" />
-  </TouchableOpacity>
+    <Link href="../patient-info" ><MaterialCommunityIcons name="arrow-right-top-bold" size={24} color="#6750A4" /></Link>
+  </View>
 );
 
 export default function HomeScreen() {
