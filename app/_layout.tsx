@@ -41,9 +41,7 @@ export default function RootLayout() {
     }}>
       <Stack screenOptions={{ headerShown: false }} initialRouteName="login">
         <Stack.Screen name="login" />
-        <Stack.Screen name="(tabs)" />
         <Stack.Screen name="+not-found" options={{ headerShown: true }} />
-</old_str>
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
