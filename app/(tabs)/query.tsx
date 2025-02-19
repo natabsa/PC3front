@@ -148,11 +148,16 @@ const styles = StyleSheet.create({
   },
   historyCard: {
     flexDirection: 'row',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#ffffff',
     borderRadius: 8,
     padding: 12,
     marginBottom: 8,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
   avatarContainer: {
     marginRight: 12,
