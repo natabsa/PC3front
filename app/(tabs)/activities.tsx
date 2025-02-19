@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useState } from 'react';
+import { Popup } from '@/components/Popup';
 
 type Activity = {
   id: string;
@@ -15,24 +16,44 @@ const ActivityCard = ({ activity, onToggle, isChecked }: {
   activity: Activity; 
   onToggle: () => void;
   isChecked: boolean;
-}) => (
-  <View style={styles.activityCard}>
-    <View style={styles.timeContainer}>
-      <View style={styles.timeSlot}>
-        <ThemedText style={styles.timeLabel}>From {activity.startTime}</ThemedText>
+}) => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  return (
+    <View style={styles.activityCard}>
+      <View style={styles.timeContainer}>
+        <View style={styles.timeSlot}>
+          <ThemedText style={styles.timeLabel}>From {activity.startTime}</ThemedText>
+        </View>
+        <View style={styles.timeSlot}>
+          <ThemedText style={styles.timeLabel}>To {activity.endTime}</ThemedText>
+        </View>
       </View>
-      <View style={styles.timeSlot}>
-        <ThemedText style={styles.timeLabel}>To {activity.endTime}</ThemedText>
-      </View>
+      <TouchableOpacity style={styles.activityInfo} onPress={() => setShowPopup(true)}>
+        <ThemedText>{activity.description}</ThemedText>
+        <ThemedText style={styles.seeMore}>See more...</ThemedText>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.checkbox} onPress={onToggle}>
+        {isChecked && <ThemedText style={styles.checkmark}>✓</ThemedText>}
+      </TouchableOpacity>
+
+      <Popup
+        visible={showPopup}
+        onClose={() => setShowPopup(false)}
+        title="Activity Details"
+      >
+        <View style={styles.popupContent}>
+          <ThemedText style={styles.popupTime}>
+            From: {activity.startTime} - To: {activity.endTime}
+          </ThemedText>
+          <ThemedText style={styles.popupDescription}>
+            {activity.description}
+          </ThemedText>
+        </View>
+      </Popup>
     </View>
-    <TouchableOpacity style={styles.activityInfo} onPress={() => console.log('Clicked!')}>
-      <ThemedText>{activity.description}</ThemedText>
-      <ThemedText style={styles.seeMore}>See more...</ThemedText>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.checkbox} onPress={onToggle}>
-      {isChecked && <ThemedText style={styles.checkmark}>✓</ThemedText>}
-    </TouchableOpacity>
-  </View>
+  );
+};
 );
 
 export default function ActivitiesScreen() {
@@ -126,5 +147,16 @@ const styles = StyleSheet.create({
     color: '#6750A4',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  popupContent: {
+    gap: 12,
+  },
+  popupTime: {
+    fontSize: 16,
+    color: '#666',
+  },
+  popupDescription: {
+    fontSize: 18,
+    lineHeight: 24,
   },
 });
