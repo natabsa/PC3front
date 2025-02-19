@@ -1,3 +1,4 @@
+
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -39,8 +40,10 @@ export default function RootLayout() {
         card: '#ffffff',
       },
     }}>
-      <Stack screenOptions={{ headerShown: false }} initialRouteName="login">
-        <Stack.Screen name="login" />
+      <Stack>
+        <Stack.Screen name="index" redirect={true} />
+        <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" options={{ headerShown: true }} />
       </Stack>
       <StatusBar style="auto" />
