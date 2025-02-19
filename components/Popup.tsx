@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Modal, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { ThemedText } from './ThemedText';
@@ -42,6 +41,7 @@ const styles = StyleSheet.create({
   container: {
     width: '80%',
     padding: 20,
+    paddingTop: 40,
     borderRadius: 10,
     elevation: 5,
     shadowColor: '#000',
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
   },
   closeIcon: {
     position: 'absolute',
-    top: 12,
-    left: 12,
+    top: 8,
+    left: 8,
     padding: 8,
     zIndex: 1,
   },
