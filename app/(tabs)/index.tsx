@@ -99,20 +99,6 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}>
-          <ThemedText>Home</ThemedText>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <ThemedText>Query</ThemedText>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <ThemedText>Activities</ThemedText>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <ThemedText>New</ThemedText>
-        </TouchableOpacity>
-      </View>
     </ThemedView>
   );
 }
@@ -176,18 +162,5 @@ const styles = StyleSheet.create({
   },
   arrow: {
     justifyContent: 'center',
-  },
-  bottomNav: {
-    flexDirection: 'row',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#6750A4',
-    padding: 16,
-  },
-  navItem: {
-    flex: 1,
-    alignItems: 'center',
   },
 });
