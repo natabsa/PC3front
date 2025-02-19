@@ -39,7 +39,11 @@ export default function QueryScreen() {
   const [lastName, setLastName] = useState('');
 
   const handleQuery = () => {
-    router.push('../patient-info');
+    if (selectedType === 'patient') {
+      router.push('../patient-info');
+    } else {
+      router.push('../employee-info');
+    }
   };
 
   return (
