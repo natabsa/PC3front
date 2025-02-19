@@ -19,12 +19,10 @@ const ActivityCard = ({ activity, onToggle, isChecked }: {
   <View style={styles.activityCard}>
     <View style={styles.timeContainer}>
       <View style={styles.timeSlot}>
-        <ThemedText style={styles.timeLabel}>De</ThemedText>
-        <ThemedText style={styles.time}>{activity.startTime}</ThemedText>
+        <ThemedText style={styles.timeLabel}>From {activity.startTime}</ThemedText>
       </View>
       <View style={styles.timeSlot}>
-        <ThemedText style={styles.timeLabel}>Até</ThemedText>
-        <ThemedText style={styles.time}>{activity.endTime}</ThemedText>
+        <ThemedText style={styles.timeLabel}>To {activity.endTime}</ThemedText>
       </View>
     </View>
     <View style={styles.activityInfo}>
@@ -79,13 +77,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 24,
+    marginBottom: 16,
   },
   activityCard: {
     flexDirection: 'row',
     backgroundColor: '#ffffff',
     borderRadius: 8,
-    padding: 16,
+    padding: 12,
     marginBottom: 12,
     alignItems: 'center',
     shadowColor: '#000',
@@ -114,7 +112,6 @@ const styles = StyleSheet.create({
   seeMore: {
     color: '#666',
     fontSize: 12,
-    marginTop: 4,
   },
   checkbox: {
     width: 24,

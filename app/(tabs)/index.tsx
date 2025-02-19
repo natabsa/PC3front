@@ -2,6 +2,8 @@ import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import { Link } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 type Activity = {
   id: string;
@@ -31,32 +33,26 @@ const favorites: Favorite[] = [
 const ActivityCard = ({ activity }: { activity: Activity }) => (
   <TouchableOpacity style={styles.activityCard}>
     <View style={styles.timeContainer}>
-      <ThemedText style={styles.timeLabel}>De</ThemedText>
-      <ThemedText style={styles.time}>{activity.startTime}</ThemedText>
-      <ThemedText style={styles.timeLabel}>Até</ThemedText>
-      <ThemedText style={styles.time}>{activity.endTime}</ThemedText>
+      <ThemedText style={styles.timeLabel}>From {activity.startTime}</ThemedText>
+      <ThemedText style={styles.timeLabel}>To {activity.endTime}</ThemedText>
     </View>
     <View style={styles.activityInfo}>
       <ThemedText>{activity.description}</ThemedText>
     </View>
-    <View style={styles.arrow}>
-      <ThemedText>→</ThemedText>
-    </View>
+    <MaterialCommunityIcons name="arrow-right-top-bold" size={24} color="#6750A4" />
   </TouchableOpacity>
 );
 
 const FavoriteCard = ({ favorite }: { favorite: Favorite }) => (
   <TouchableOpacity style={styles.favoriteCard}>
     <View style={styles.avatarContainer}>
-      <View style={styles.avatar} />
+      <Ionicons name="person-circle-outline" size={48} color='#6750A4' />
     </View>
     <View style={styles.favoriteInfo}>
       <ThemedText>{favorite.firstName}</ThemedText>
       <ThemedText style={styles.subtitle}>{favorite.lastName}</ThemedText>
     </View>
-    <View style={styles.arrow}>
-      <ThemedText>→</ThemedText>
-    </View>
+    <MaterialCommunityIcons name="arrow-right-top-bold" size={24} color="#6750A4" />
   </TouchableOpacity>
 );
 
@@ -104,7 +100,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   timeContainer: {
-    marginRight: 12,
+    marginRight: 16,
   },
   timeLabel: {
     fontSize: 12,
@@ -128,12 +124,8 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
     marginRight: 12,
-  },
-  avatar: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#6750A4',
-    borderRadius: 20,
+    paddingRight: 12,
+    paddingLeft: 12,
   },
   favoriteInfo: {
     flex: 1,
