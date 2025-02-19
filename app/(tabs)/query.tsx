@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useState } from 'react';
-import { router } from 'expo-router';
+import { router,  } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
@@ -21,14 +21,13 @@ const historyEntries: HistoryEntry[] = [
 ];
 
 const HistoryCard = ({ entry }: { entry: HistoryEntry }) => (
-  <TouchableOpacity style={styles.historyCard} onPress={() => router.push('/patient-info')}>
+  <TouchableOpacity style={styles.historyCard} onPress={() => router.push('../patient-info')}>
     <View style={styles.avatarContainer}>
       <Ionicons name="person-circle-outline" size={48} color='#6750A4' />
     </View>
     <View style={styles.historyInfo}>
       <ThemedText>{entry.firstName}</ThemedText>
       <ThemedText style={styles.subtitle}>{entry.lastName}</ThemedText>
-      <ThemedText style={styles.typeLabel}>{entry.type}</ThemedText>
     </View>
     <MaterialCommunityIcons name="arrow-right-top-bold" size={24} color="#6750A4" />
   </TouchableOpacity>
@@ -40,7 +39,7 @@ export default function QueryScreen() {
   const [lastName, setLastName] = useState('');
 
   const handleQuery = () => {
-    router.push('/patient-info');
+    router.push('../patient-info');
   };
 
   return (

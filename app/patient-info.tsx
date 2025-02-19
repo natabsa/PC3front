@@ -1,23 +1,23 @@
 
-import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { router } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { Popup } from '@/components/Popup';
 
 export default function PatientInfoScreen() {
+
+  const patient = {nome: "Jibs", cpf: "123.456.789-00",}
   return (
-    <ThemedView style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Ionicons name="arrow-back" size={24} color="#000" />
-      </TouchableOpacity>
+    <ScrollView style={styles.container}>
 
       <View style={styles.header}>
         <View style={styles.avatar}>
           <Ionicons name="person" size={64} color="#fff" />
         </View>
-        <ThemedText style={styles.name}>Fulano de Tal</ThemedText>
+        <ThemedText style={styles.name}>{patient.nome}</ThemedText>
       </View>
 
       <View style={styles.grid}>
@@ -51,7 +51,7 @@ export default function PatientInfoScreen() {
           <ThemedText style={styles.deleteButtonText}>Delete</ThemedText>
         </TouchableOpacity>
       </View>
-    </ThemedView>
+    </ScrollView>
   );
 }
 
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 16,
+    padding: 32,
     justifyContent: 'center',
     marginBottom: 32,
   },
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     backgroundColor: '#F5F5F5',
     borderRadius: 12,
-    padding: 16,
+    padding: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -105,14 +106,16 @@ const styles = StyleSheet.create({
   },
   updateButton: {
     backgroundColor: '#6750A4',
-    padding: 16,
+    padding: 8,
+    marginHorizontal: 56,
     borderRadius: 8,
     alignItems: 'center',
   },
   deleteButton: {
     borderWidth: 1,
+    marginHorizontal: 56,
     borderColor: '#DC3545',
-    padding: 16,
+    padding: 8,
     borderRadius: 8,
     alignItems: 'center',
   },

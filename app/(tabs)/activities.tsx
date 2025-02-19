@@ -13,11 +13,7 @@ type Activity = {
   description: string;
 };
 
-const ActivityCard = ({ activity, onToggle, isChecked }: { 
-  activity: Activity; 
-  onToggle: () => void;
-  isChecked: boolean;
-}) => {
+const ActivityCard = ({ activity, onToggle, isChecked }) => {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
