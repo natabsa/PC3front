@@ -11,13 +11,12 @@ type HistoryEntry = {
   id: string;
   firstName: string;
   lastName: string;
-  type: 'patient' | 'employee';
 };
 
 const historyEntries: HistoryEntry[] = [
-  { id: '1', firstName: 'Fulano', lastName: 'de Tal', type: 'patient' },
-  { id: '2', firstName: 'Ciclano', lastName: 'Santos', type: 'employee' },
-  { id: '3', firstName: 'Beltrano', lastName: 'da Conceição', type: 'patient' },
+  { id: '1', firstName: 'Fulano', lastName: 'de Tal' },
+  { id: '2', firstName: 'Ciclano', lastName: 'Santos'},
+  { id: '3', firstName: 'Beltrano', lastName: 'da Conceição'},
 ];
 
 const HistoryCard = ({ entry }: { entry: HistoryEntry }) => (
@@ -47,12 +46,7 @@ export default function QueryScreen() {
     <ThemedView style={styles.container}>
       <View style={styles.form}>
         <View style={styles.pickerContainer}>
-          <ThemedText style={styles.pickerLabel}>Select Type</ThemedText>
-          <Picker
-            selectedValue={selectedType}
-            onValueChange={(value) => setSelectedType(value)}
-            style={styles.picker}
-          >
+          <Picker selectedValue={selectedType} onValueChange={(value) => setSelectedType(value)} style={styles.picker}>
             <Picker.Item label="Patient" value="patient" />
             <Picker.Item label="Employee" value="employee" />
           </Picker>
@@ -102,26 +96,25 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   pickerContainer: {
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-    borderRadius: 4,
     backgroundColor: '#F5F5F5',
-    marginBottom: 16,
+    marginBottom: 12,
+  },
+  pickerLabel: {
+    fontSize: 48,
+    color: '#6750A4',
+    marginLeft: 24,
+    marginTop: 8,
+  },
+  picker: {
+    borderRadius: 12,
+    borderWidth: 1,
+    padding: 12,
+    fontSize: 16,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
-    shadowRadius: 1,
-  },
-  pickerLabel: {
-    fontSize: 12,
-    color: '#6750A4',
-    marginLeft: 12,
-    marginTop: 8,
-  },
-  picker: {
-    height: 48,
-    marginTop: -8,
+    shadowRadius: 12,
   },
   inputContainer: {
     gap: 4,
@@ -141,9 +134,11 @@ const styles = StyleSheet.create({
   },
   queryButton: {
     backgroundColor: '#6750A4',
-    padding: 12,
-    borderRadius: 4,
+    padding: 8,
+    borderRadius: 96,
     alignItems: 'center',
+    alignSelf: 'flex-end',
+    width: 128,
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },

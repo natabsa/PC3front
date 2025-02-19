@@ -12,7 +12,7 @@ import Foundation from '@expo/vector-icons/Foundation';
 
 export default function TabLayout() {
   return (
-    <Tabs size={96} 
+    <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors.light.tint,
         headerShown: false,

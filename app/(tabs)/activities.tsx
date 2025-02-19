@@ -25,10 +25,10 @@ const ActivityCard = ({ activity, onToggle, isChecked }: {
         <ThemedText style={styles.timeLabel}>To {activity.endTime}</ThemedText>
       </View>
     </View>
-    <View style={styles.activityInfo}>
+    <TouchableOpacity style={styles.activityInfo} onPress={() => console.log('Clicked!')}>
       <ThemedText>{activity.description}</ThemedText>
       <ThemedText style={styles.seeMore}>See more...</ThemedText>
-    </View>
+    </TouchableOpacity>
     <TouchableOpacity style={styles.checkbox} onPress={onToggle}>
       {isChecked && <ThemedText style={styles.checkmark}>✓</ThemedText>}
     </TouchableOpacity>

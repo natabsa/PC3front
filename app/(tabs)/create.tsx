@@ -21,12 +21,7 @@ export default function CreateScreen() {
       
       <View style={styles.form}>
         <View style={styles.pickerContainer}>
-          <ThemedText>Type</ThemedText>
-          <Picker
-            selectedValue={type}
-            onValueChange={setType}
-            style={styles.picker}
-          >
+          <Picker selectedValue={type} onValueChange={(value) => setType(value)} style={styles.picker}>
             <Picker.Item label="Patient" value="patient" />
             <Picker.Item label="Employee" value="employee" />
           </Picker>
@@ -74,15 +69,26 @@ const styles = StyleSheet.create({
   },
   form: {
     gap: 16,
+  },  pickerContainer: {
+    backgroundColor: '#F5F5F5',
+    marginBottom: 12,
   },
-  pickerContainer: {
-    gap: 4,
+  pickerLabel: {
+    fontSize: 48,
+    color: '#6750A4',
+    marginLeft: 24,
+    marginTop: 8,
   },
   picker: {
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
+    borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#ccc',
+    padding: 12,
+    fontSize: 16,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 12,
   },
   inputContainer: {
     gap: 4,
