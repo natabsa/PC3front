@@ -43,8 +43,15 @@ export default function TabLayout() {
       <Tabs.Screen
         name="query"
         options={{
-          title: 'query',
+          title: 'Query',
           tabBarIcon: ({ color }) => <Foundation name="magnifying-glass" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="create"
+        options={{
+          title: 'Create',
+          tabBarIcon: ({ color }) => <Octicons name="plus-circle" size={24} color={color} />,
         }}
       />
     </Tabs>
