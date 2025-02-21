@@ -1,31 +1,30 @@
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  TextInput,
+  ScrollView,
+} from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useState } from "react";
+import { router } from "expo-router";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+//import queryApiUrl from '../config'
 
-import { StyleSheet, TouchableOpacity, View, TextInput, ScrollView } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { useState } from 'react';
-import { router,  } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-type HistoryEntry = {
-  id: string;
-  firstName: string;
-  lastName: string;
-};
 
-const historyEntries: HistoryEntry[] = [
-  { id: '1', firstName: 'Fulano', lastName: 'de Tal' },
-  { id: '2', firstName: 'Ciclano', lastName: 'Santos'},
-  { id: '3', firstName: 'Beltrano', lastName: 'da Conceição'},
+const historyEntries = [
+  { id: "1", firstName: "Fulano", lastName: "de Tal" },
+  { id: "2", firstName: "Ciclano", lastName: "Santos" },
+  { id: "3", firstName: "Beltrano", lastName: "da Conceição" },
 ];
 
-export default function QueryScreen() {
-  const [selectedType, setSelectedType] = useState('patient');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
 
 
+/*
 const handleQuery = () => {
   if (selectedType === 'patient') {
     router.push('../patient-info');
@@ -33,26 +32,58 @@ const handleQuery = () => {
     router.push('../employee-info');
   }
 };
+*/
 
-const HistoryCard = ({ entry }: { entry: HistoryEntry }) => (
-  <TouchableOpacity style={styles.historyCard} onPress={handleQuery}>
-    <View style={styles.avatarContainer}>
-      <Ionicons name="person-circle-outline" size={48} color='#6750A4' />
-    </View>
-    <View style={styles.historyInfo}>
-      <ThemedText>{entry.firstName}</ThemedText>
-      <ThemedText style={styles.subtitle}>{entry.lastName}</ThemedText>
-    </View>
-    <MaterialCommunityIcons name="arrow-right-top-bold" size={24} color="#6750A4" />
-  </TouchableOpacity>
-);
+export default function QueryScreen() {
+  const [selectedType, setSelectedType] = useState("patient");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
+  const handleQuery = async () => {
+
+   // const data = JSON.stringify({ firstName: fName, lastName: lName })
+
+    return await fetch(
+      `https://7b9ea40a-5d18-4a94-8b10-7fcaf12e2a3f-00-1pcjn70d2pviy.worf.replit.dev/api/${selectedType}/${firstName}/${lastName}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json'}
+      }
+    )
+      .then((response) => response.json()) // Parse the response as JSON
+      .then((data) => {
+        console.log(data); // Your object will be in 'data'
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error); // Handle any errors
+      });
+  };
+
+  const HistoryCard = ({ entry }: { entry }) => (
+    <TouchableOpacity style={styles.historyCard} onPress={handleQuery}>
+      <View style={styles.avatarContainer}>
+        <Ionicons name="person-circle-outline" size={48} color="#6750A4" />
+      </View>
+      <View style={styles.historyInfo}>
+        <ThemedText>{entry.firstName}</ThemedText>
+        <ThemedText style={styles.subtitle}>{entry.lastName}</ThemedText>
+      </View>
+      <MaterialCommunityIcons
+        name="arrow-right-top-bold"
+        size={24}
+        color="#6750A4"
+      />
+    </TouchableOpacity>
+  );
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.form}>
         <View style={styles.pickerContainer}>
-          <Picker selectedValue={selectedType} onValueChange={(value) => setSelectedType(value)} style={styles.picker}>
+          <Picker
+            selectedValue={selectedType}
+            onValueChange={(value) => setSelectedType(value)}
+            style={styles.picker}
+          >
             <Picker.Item label="Patient" value="patient" />
             <Picker.Item label="Employee" value="employee" />
           </Picker>
@@ -78,14 +109,19 @@ const HistoryCard = ({ entry }: { entry: HistoryEntry }) => (
           />
         </View>
 
-        <TouchableOpacity style={styles.queryButton} onPress={handleQuery}>
+        <TouchableOpacity
+          style={styles.queryButton}
+          onPress={(firstName, lastName, selectedType) => {
+            handleQuery(firstName, lastName, selectedType);
+          }}
+        >
           <ThemedText style={styles.queryButtonText}>Query</ThemedText>
         </TouchableOpacity>
       </View>
 
       <View style={styles.historySection}>
         <ThemedText style={styles.historyTitle}>History</ThemedText>
-        {historyEntries.map(entry => (
+        {historyEntries.map((entry) => (
           <HistoryCard key={entry.id} entry={entry} />
         ))}
       </View>
@@ -102,12 +138,12 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   pickerContainer: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: "#F5F5F5",
     marginBottom: 12,
   },
   pickerLabel: {
     fontSize: 48,
-    color: '#6750A4',
+    color: "#6750A4",
     marginLeft: 24,
     marginTop: 8,
   },
@@ -117,7 +153,7 @@ const styles = StyleSheet.create({
     padding: 12,
     fontSize: 16,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 12,
@@ -127,53 +163,53 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#E0E0E0',
+    borderColor: "#E0E0E0",
     borderRadius: 4,
     padding: 12,
     fontSize: 16,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: "#F5F5F5",
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
   },
   queryButton: {
-    backgroundColor: '#6750A4',
+    backgroundColor: "#6750A4",
     padding: 8,
     borderRadius: 96,
-    alignItems: 'center',
-    alignSelf: 'flex-end',
+    alignItems: "center",
+    alignSelf: "flex-end",
     width: 128,
     elevation: 3,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3,
   },
   queryButtonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   historySection: {
     marginTop: 32,
   },
   historyTitle: {
     fontSize: 20,
-    fontWeight: '500',
+    fontWeight: "500",
     marginBottom: 16,
-    color: '#1F1F1F',
+    color: "#1F1F1F",
   },
   historyCard: {
-    flexDirection: 'row',
-    backgroundColor: '#ffffff',
+    flexDirection: "row",
+    backgroundColor: "#ffffff",
     borderRadius: 8,
     padding: 16,
     marginBottom: 12,
-    alignItems: 'center',
+    alignItems: "center",
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
@@ -186,13 +222,13 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
     marginTop: 2,
   },
   typeLabel: {
     fontSize: 12,
-    color: '#6750A4',
+    color: "#6750A4",
     marginTop: 4,
-    textTransform: 'capitalize',
+    textTransform: "capitalize",
   },
 });
