@@ -41,8 +41,6 @@ export default function QueryScreen() {
 
   const handleQuery = async () => {
 
-   // const data = JSON.stringify({ firstName: fName, lastName: lName })
-
     return await fetch(
       `https://7b9ea40a-5d18-4a94-8b10-7fcaf12e2a3f-00-1pcjn70d2pviy.worf.replit.dev/api/${selectedType}/${firstName}/${lastName}`, {
         method: 'GET',
@@ -58,7 +56,7 @@ export default function QueryScreen() {
       });
   };
 
-  const HistoryCard = ({ entry }: { entry }) => (
+  const HistoryCard = ({ entry }) => (
     <TouchableOpacity style={styles.historyCard} onPress={handleQuery}>
       <View style={styles.avatarContainer}>
         <Ionicons name="person-circle-outline" size={48} color="#6750A4" />
@@ -111,9 +109,7 @@ export default function QueryScreen() {
 
         <TouchableOpacity
           style={styles.queryButton}
-          onPress={(firstName, lastName, selectedType) => {
-            handleQuery(firstName, lastName, selectedType);
-          }}
+          onPress={handleQuery}
         >
           <ThemedText style={styles.queryButtonText}>Query</ThemedText>
         </TouchableOpacity>
